@@ -413,7 +413,7 @@ namespace UnityEditor.SettingsManagement
 #if UNITY_2020_1_OR_NEWER
                 menu.AddItem(new GUIContent("Developer/Recompile Scripts"), false, EditorUtility.RequestScriptReload);
 #else
-                menu.AddItem(new GUIContent("Developer/Recompile Scripts"), false, UnityEditorInternal.InternalEditorUtility.RequestScriptReload);
+                menu.AddItem(new GUIContent("Developer/Recompile Scripts"), false, UnityEditor.EditorUtility.RequestScriptReload);
 #endif
 #endif
             }
