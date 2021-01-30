@@ -19,6 +19,8 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         public SharedFloat maxPauseDuration = 0;
         [Tooltip("The maximum number of retries per tick (set higher if using a slow tick time)")]
         public SharedInt targetRetries = 1;
+        [Tooltip("If target is null then use the target position")]
+        public SharedVector3 targetPosition;
         [Tooltip("Length and width of a square area")]
         public float distance = 10;
         [Tooltip("Number of times to perform this action before exit")]
@@ -46,6 +48,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
                         Debug.Log("Counter: " + counter);
 
                         if(counter == numberOfTimes){
+                            counter = 0;
                             return TaskStatus.Success;
                         }
                     }
@@ -56,23 +59,17 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
                         }
                     }
                 } else {
-                    TrySetTarget();
+                    //TrySetTarget();
                 }
-            
-                /*
-                if(counter == numberOfTimes){
-                    return TaskStatus.Success;
-                }
-                */
             }
             return TaskStatus.Running;
         }
 
         private bool TrySetTarget()
         {
-            Vector3 currentPosition = transform.position;
-            float currentPositionX = currentPosition.x;
-            float currentPositionZ = currentPosition.z;
+            //Vector3 currentPosition = transform.position;
+            float currentPositionX = Target().x;
+            float currentPositionZ = Target().z;
             // Four different points of a square
             float movableMaxZ = currentPositionZ + distance;
             float movableMinZ = currentPositionZ - distance;
@@ -93,10 +90,11 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
             }
             if (validDestination) {
                 SetDestination(destination);
+                Debug.Log("Moving to " + destination);
             } else {
                 Vector3 position = new Vector3(Random.Range(movableMinX, movableMaxX), transform.position.y, 
                     Random.Range(movableMinZ, movableMaxZ));
-                SetDestination(position);
+                //SetDestination(position);
             }
             return validDestination;
         }
@@ -104,9 +102,9 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         private bool CheckWithinACertainArea(Vector3 destination, float movableMaxZ, float movableMinZ, 
             float movableMaxX, float movableMinX){
 
-            Vector3 currentPosition = transform.position;
-            float currentPositionX = currentPosition.x;
-            float currentPositionZ = currentPosition.z;
+            //Vector3 currentPosition = transform.position;
+            float currentPositionX = Target().x;
+            float currentPositionZ = Target().z;
             // Four different points of a square
             movableMaxZ = currentPositionZ + distance;
             movableMinZ = currentPositionZ - distance;
@@ -121,6 +119,11 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
             } else {
                 return true;
             }
+        }
+
+        private Vector3 Target()
+        {
+            return targetPosition.Value;
         }
 
         // Reset the public variables

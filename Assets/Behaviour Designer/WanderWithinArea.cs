@@ -57,6 +57,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
             float movableMinZ = 0;
             float movableMaxX = 0;
             float movableMinX = 0;
+
             for(int i = 0; i < movableArea.point.Count; i++){
                 if(movableArea.point[i].position.z > movableMaxZ){
                     movableMaxZ = movableArea.point[i].position.z;
