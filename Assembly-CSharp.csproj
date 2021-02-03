@@ -699,6 +699,7 @@
      <Compile Include="Assets\FPS\Scripts\WeaponFuelCellHandler.cs" />
      <Compile Include="Assets\FPS\Scripts\WeaponPickup.cs" />
      <Compile Include="Assets\MovableArea.cs" />
+     <Compile Include="Assets\Scripts\BroadViewDetection.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne_License.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
