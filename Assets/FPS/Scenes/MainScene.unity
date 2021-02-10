@@ -1275,6 +1275,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2729281214355838732}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1520376807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520376806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd92eaaa5e302449ab8f47994d52467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  budget: 1
+  targetDestination: {x: 0, y: 0.5, z: 0}
 --- !u!136 &1520376808
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4100,7 +4114,7 @@ PrefabInstance:
     - target: {fileID: 2015434656898269656, guid: 25a1b0efadb966e44889fce712c8ff8d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.4999995
+      value: 1.43
       objectReference: {fileID: 0}
     - target: {fileID: 2015434656898269656, guid: 25a1b0efadb966e44889fce712c8ff8d,
         type: 3}
@@ -4110,7 +4124,7 @@ PrefabInstance:
     - target: {fileID: 2015434656898269656, guid: 25a1b0efadb966e44889fce712c8ff8d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.31
+      value: -0.02
       objectReference: {fileID: 0}
     - target: {fileID: 2015434656898269656, guid: 25a1b0efadb966e44889fce712c8ff8d,
         type: 3}

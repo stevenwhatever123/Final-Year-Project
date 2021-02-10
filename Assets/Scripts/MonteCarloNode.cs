@@ -44,6 +44,7 @@ public class MonteCarloNode
         this.root = root;
         leaf = new List<MonteCarloNode>();
         availableMoves = new List<MonteCarloNode>();
+        this.root.leaf.Add(this);
         
         Debug.Log("Construction working 2");
     }
@@ -102,13 +103,13 @@ public class MonteCarloNode
 
     public bool hasLeaf()
     {
-        if (this.leaf != null)
+        if (this.leaf == null)
         {
-            return true;
+            return false;
         }
         else
         {
-            return false;
+            return true;
         }
     }
 
@@ -192,6 +193,7 @@ public class MonteCarloNode
     
     public MonteCarloNode Expand()
     {
+        Debug.Log("Expansion Working");
         /*
         MonteCarloNode ret = availableMoves[0];
         AddLeaf(ret);
@@ -202,12 +204,40 @@ public class MonteCarloNode
         Random r = new Random();
         if (currentPosition != targetDestination)
         {
-            float x = r.Next(0, 1);
-            float y = 0;
-            float z = r.Next(0, 1);
-            
-            Vector3 move = new Vector3(currentPosition.x + x, 
-                currentPosition.y, currentPosition.z + z );
+            Vector3 move = new Vector3(0, 0, 0);
+            float distance = Vector3.Distance(currentPosition, targetDestination);
+            if (distance < 3)
+            {
+                move = new Vector3(targetDestination.x, 
+                    targetDestination.y, targetDestination.z);
+            }
+            else
+            {
+                float x = r.Next(-1, 0);
+                float y = 0;
+                float z = r.Next(0, 1);
+                /*
+                if (currentPosition.x - targetDestination.x > 0)
+                {
+                    x = r.Next(-1, 0);
+                }
+                else
+                {
+                    x = r.Next(0, 1);
+                }
+                
+                if (currentPosition.z - targetDestination.z > 0)
+                {
+                    z = r.Next(-1, 0);
+                }
+                else
+                {
+                    z = r.Next(0, 1);
+                }
+                */
+                move = new Vector3(currentPosition.x + x, 
+                    currentPosition.y, currentPosition.z + z );
+            }
 
             MonteCarloNode leaf = new MonteCarloNode(this, move);
 
@@ -219,6 +249,7 @@ public class MonteCarloNode
 
     public void backPropogation(MonteCarloNode nodeToExplore)
     {
+        Debug.Log("Back Propogation Working");
         MonteCarloNode tempNode = nodeToExplore;
         while (tempNode != null)
         {
@@ -234,11 +265,14 @@ public class MonteCarloNode
 
     public MonteCarloNode rollout()
     {
+        Debug.Log("Rollout Working");
+        
         Random r = new Random();
         
         while (currentPosition != targetDestination)
         {
-            Expand();
+            MonteCarloNode leaf = Expand();
+            currentPosition = leaf.currentPosition;
         }
         
         if (currentPosition == targetDestination)

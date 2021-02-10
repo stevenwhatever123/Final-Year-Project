@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -12,10 +13,14 @@ public class MonteCarloTreeSearch : MonoBehaviour
     private MonteCarloNode leaf;
     private MonteCarloNode expandedLeaf;
     private MonteCarloNode simulationResult;
+    
+    private MonteCarloNode somethingUseful;
 
     public Vector3 targetDestination;
 
-    void Update()
+    //private MonteCarloNode node;
+
+    void Start()
     {
         MCTS();
     }
@@ -33,18 +38,28 @@ public class MonteCarloTreeSearch : MonoBehaviour
             simulationResult.backPropogation(expandedLeaf);
             counter++;
         } while (counter < budget);
-
-        rootNode.BestLeaf();
         
+        Debug.Log("Leaf size: " + rootNode.leaf.Count);
+        
+        //rootNode.BestLeaf();
+        
+        //Debug.Log("Leaf size: " + rootNode.BestLeaf().leaf.Count);
+        
+        draw(rootNode);
+        //node = rootNode;
     }
 
     void draw(MonteCarloNode node)
     {
         List<Vector3> path;
+        /*
         while (node.hasLeaf())
         {
             Gizmos.color = Color.red;
             Gizmos.DrawLine(node.currentPosition, node.getLeaf().currentPosition);
         }
+        */
+        Debug.Log("Node: " + node.currentPosition);
+        Debug.Log("Leaf: " + node.getLeaf().currentPosition);
     }
 }
