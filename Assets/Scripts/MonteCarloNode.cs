@@ -213,7 +213,8 @@ public class MonteCarloNode
             }
             else
             {
-                float x = r.Next(-1, 0);
+                //float x = r.Next(-1, 0);
+                float x = 0;
                 float y = 0;
                 float z = r.Next(0, 1);
                 /*

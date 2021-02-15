@@ -20,9 +20,15 @@ public class MonteCarloTreeSearch : MonoBehaviour
 
     //private MonteCarloNode node;
 
-    void Start()
+    private int i = 0;
+
+    void Update()
     {
-        MCTS();
+        while (i < budget)
+        {
+            MCTS();
+            i++;
+        }
     }
 
     void MCTS()
@@ -34,8 +40,8 @@ public class MonteCarloTreeSearch : MonoBehaviour
         {
             leaf = rootNode.Selection();
             expandedLeaf = leaf.Expand();
-            simulationResult = expandedLeaf.rollout();
-            simulationResult.backPropogation(expandedLeaf);
+            //simulationResult = expandedLeaf.rollout();
+            //simulationResult.backPropogation(expandedLeaf);
             counter++;
         } while (counter < budget);
         
