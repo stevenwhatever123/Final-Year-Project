@@ -701,6 +701,7 @@
      <Compile Include="Assets\FindArea.cs" />
      <Compile Include="Assets\MovableArea.cs" />
      <Compile Include="Assets\Scripts\A-Star\AStarGrid.cs" />
+     <Compile Include="Assets\Scripts\A-Star\AStarHeap.cs" />
      <Compile Include="Assets\Scripts\A-Star\AStarNode.cs" />
      <Compile Include="Assets\Scripts\A-Star\AStarPathfinding.cs" />
      <Compile Include="Assets\Scripts\BroadViewDetection.cs" />

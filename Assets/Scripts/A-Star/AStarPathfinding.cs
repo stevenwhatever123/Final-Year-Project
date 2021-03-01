@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class AStarPathfinding : MonoBehaviour
@@ -21,6 +22,9 @@ public class AStarPathfinding : MonoBehaviour
 
     void FindPath(Vector3 startPos, Vector3 targetPos)
     {
+        Stopwatch sw = new Stopwatch();
+        sw.Start();
+        
         AStarNode startNode = grid.NodeFromWorldPoint(startPos);
         AStarNode targetNode = grid.NodeFromWorldPoint(targetPos);
 
@@ -28,7 +32,7 @@ public class AStarPathfinding : MonoBehaviour
         HashSet<AStarNode> closedSet = new HashSet<AStarNode>();
         openSet.Add(startNode);
 
-        while (openSet.Count > 0)
+        while (openSet.Count > 0 && targetNode.walkable)
         {
             AStarNode currentNode = openSet[0];
             for (int i = 1; i < openSet.Count; i++)
@@ -45,6 +49,8 @@ public class AStarPathfinding : MonoBehaviour
 
             if (currentNode == targetNode)
             {
+                sw.Stop();
+                print("Path found: " + sw.ElapsedMilliseconds + " ms");
                 RetracePath(startNode, targetNode);
                 return;
             }

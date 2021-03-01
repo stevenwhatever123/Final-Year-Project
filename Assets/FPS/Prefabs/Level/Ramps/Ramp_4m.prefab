@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8464283786400200660}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Ramp_4m
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,6 +42,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126021612096979025, guid: f82ad03af081ae7449925e80f34dbe6c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4126021612097477745, guid: f82ad03af081ae7449925e80f34dbe6c,
         type: 3}

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3095780018561912517}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Ramp_8m
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,11 +38,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3095780018561912517}
     m_Modifications:
-    - target: {fileID: 59357883524950631, guid: 01e098456aadb2c4480a8c5b62925e15,
-        type: 3}
-      propertyPath: m_Name
-      value: Mesh
-      objectReference: {fileID: 0}
     - target: {fileID: 59357883524462151, guid: 01e098456aadb2c4480a8c5b62925e15,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -97,6 +92,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 59357883524950631, guid: 01e098456aadb2c4480a8c5b62925e15,
+        type: 3}
+      propertyPath: m_Name
+      value: Mesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 59357883524950631, guid: 01e098456aadb2c4480a8c5b62925e15,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01e098456aadb2c4480a8c5b62925e15, type: 3}

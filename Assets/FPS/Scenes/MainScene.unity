@@ -195,15 +195,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d5e2d36e1ac084458cd27cff450b8cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onlyDisplayPathGizmos: 1
   seeker: {fileID: 1520376809}
+  target: {fileID: 0}
   unwalkableMask:
     serializedVersion: 2
     m_Bits: 4096
   walkableMask:
     serializedVersion: 2
     m_Bits: 8192
-  gridWorldSize: {x: 64.77, y: 60}
-  nodeRadius: 0.35
+  gridWorldSize: {x: 50, y: 80}
+  nodeRadius: 0.4
 --- !u!4 &125337567
 Transform:
   m_ObjectHideFlags: 0
@@ -212,7 +214,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125337565}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -11.1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4319,7 +4321,7 @@ PrefabInstance:
     - target: {fileID: 8746678193447392789, guid: 761cdc9e4e883334cbdcea062d0befa7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -28.5
+      value: 8.65
       objectReference: {fileID: 0}
     - target: {fileID: 8746678193447392789, guid: 761cdc9e4e883334cbdcea062d0befa7,
         type: 3}
@@ -4329,7 +4331,7 @@ PrefabInstance:
     - target: {fileID: 8746678193447392789, guid: 761cdc9e4e883334cbdcea062d0befa7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.25
+      value: 15.66
       objectReference: {fileID: 0}
     - target: {fileID: 8746678193447392789, guid: 761cdc9e4e883334cbdcea062d0befa7,
         type: 3}
