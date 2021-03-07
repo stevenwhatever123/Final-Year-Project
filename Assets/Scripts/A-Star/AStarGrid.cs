@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class AStarGrid : MonoBehaviour
@@ -48,7 +49,7 @@ public class AStarGrid : MonoBehaviour
                 Vector3 worldPoint = worldBottonLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward
                     * (y * nodeDiameter + nodeRadius);
                 bool walkable = (!Physics.CheckSphere(worldPoint, nodeRadius, unwalkableMask)
-                    && Physics.CheckSphere(worldPoint, nodeRadius, walkableMask));
+                                 && Physics.CheckSphere(worldPoint, nodeRadius, walkableMask));
                 grid[x, y] = new AStarNode(walkable, worldPoint, x, y);
             }
         }
@@ -83,15 +84,6 @@ public class AStarGrid : MonoBehaviour
 
     public AStarNode NodeFromWorldPoint(Vector3 worldPosition)
     {
-        /*
-        float percentX = (worldPosition.x + gridWorldSize.x/2) / gridWorldSize.x;
-        float percentY = (worldPosition.z + gridWorldSize.y/2) / gridWorldSize.y;
-        percentX = Mathf.Clamp01(percentX);
-        percentY = Mathf.Clamp01(percentY);
-
-        int x = Mathf.RoundToInt((gridSizeX-1) * percentX);
-        int y = Mathf.RoundToInt((gridSizeY-1) * percentY);
-        */
         float percentX = (worldPosition.x - transform.position.x + gridWorldSize.x / 2) / gridWorldSize.x;
         float percentY = (worldPosition.z - transform.position.z + gridWorldSize.y / 2) / gridWorldSize.y;
         
@@ -130,14 +122,20 @@ public class AStarGrid : MonoBehaviour
             if (grid != null)
             {
                 AStarNode seekNode = NodeFromWorldPoint(seeker.position);
+                AStarNode targetNode = NodeFromWorldPoint(target.position);
 
                 foreach (AStarNode n in grid)
                 {
                     /*
                     Gizmos.color = (n.walkable) ? Color.white : Color.red;
-                    if (playerNode == n)
+                    if (seekNode == n)
                     {
                         Gizmos.color = Color.blue;
+                    }
+
+                    if (targetNode == n)
+                    {
+                        Gizmos.color = Color.green;
                     }
                     
                     if (path != null)
@@ -149,6 +147,8 @@ public class AStarGrid : MonoBehaviour
                     }
                     Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
                     */
+                    
+                    
                     if (n.walkable)
                     {
                         Gizmos.color = Color.white;
@@ -164,9 +164,14 @@ public class AStarGrid : MonoBehaviour
                         if (seekNode == n)
                         {
                             Gizmos.color = Color.blue;
-                        
-                            Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
                         }
+                        
+                        if (targetNode == n)
+                        {
+                            Gizmos.color = Color.green;
+                        }
+                        
+                        Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
                     }
                 }
             }

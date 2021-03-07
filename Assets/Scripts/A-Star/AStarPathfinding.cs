@@ -20,7 +20,7 @@ public class AStarPathfinding : MonoBehaviour
         FindPath(seeker.position, target.position);
     }
 
-    void FindPath(Vector3 startPos, Vector3 targetPos)
+    public void FindPath(Vector3 startPos, Vector3 targetPos)
     {
         Stopwatch sw = new Stopwatch();
         sw.Start();
@@ -79,7 +79,7 @@ public class AStarPathfinding : MonoBehaviour
         }
     }
 
-    void RetracePath(AStarNode starNode, AStarNode targetNode)
+    public void RetracePath(AStarNode starNode, AStarNode targetNode)
     {
         List<AStarNode> path = new List<AStarNode>();
         AStarNode currentNode = targetNode;
@@ -95,7 +95,7 @@ public class AStarPathfinding : MonoBehaviour
         grid.path = path;
     }
 
-    int GetDistance(AStarNode nodeA, AStarNode nodeB)
+    public int GetDistance(AStarNode nodeA, AStarNode nodeB)
     {
         int distanceX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
         int distanceY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
@@ -108,5 +108,10 @@ public class AStarPathfinding : MonoBehaviour
         {
             return 14 * distanceX + 10 * (distanceY - distanceX);
         }
+    }
+    
+    public List<AStarNode> GetPath()
+    {
+        return grid.path;
     }
 }

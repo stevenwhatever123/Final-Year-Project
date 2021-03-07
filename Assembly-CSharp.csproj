@@ -610,6 +610,7 @@
      <Compile Include="Assets\Behavior Designer\Runtime\Variables\SharedVector3.cs" />
      <Compile Include="Assets\Behavior Designer\Runtime\Variables\SharedVector3Int.cs" />
      <Compile Include="Assets\Behavior Designer\Runtime\Variables\SharedVector4.cs" />
+     <Compile Include="Assets\Behaviour Designer\AStarSeek.cs" />
      <Compile Include="Assets\Behaviour Designer\AddSeenCounter.cs" />
      <Compile Include="Assets\Behaviour Designer\Alert.cs" />
      <Compile Include="Assets\Behaviour Designer\Attack.cs" />
@@ -700,6 +701,7 @@
      <Compile Include="Assets\FPS\Scripts\WeaponPickup.cs" />
      <Compile Include="Assets\FindArea.cs" />
      <Compile Include="Assets\MovableArea.cs" />
+     <Compile Include="Assets\Scripts\A-Star\AStarAgent.cs" />
      <Compile Include="Assets\Scripts\A-Star\AStarGrid.cs" />
      <Compile Include="Assets\Scripts\A-Star\AStarHeap.cs" />
      <Compile Include="Assets\Scripts\A-Star\AStarNode.cs" />
