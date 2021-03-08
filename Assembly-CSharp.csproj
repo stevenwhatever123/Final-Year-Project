@@ -610,6 +610,7 @@
      <Compile Include="Assets\Behavior Designer\Runtime\Variables\SharedVector3.cs" />
      <Compile Include="Assets\Behavior Designer\Runtime\Variables\SharedVector3Int.cs" />
      <Compile Include="Assets\Behavior Designer\Runtime\Variables\SharedVector4.cs" />
+     <Compile Include="Assets\Behaviour Designer\AStarSearchTarget.cs" />
      <Compile Include="Assets\Behaviour Designer\AStarSeek.cs" />
      <Compile Include="Assets\Behaviour Designer\AddSeenCounter.cs" />
      <Compile Include="Assets\Behaviour Designer\Alert.cs" />

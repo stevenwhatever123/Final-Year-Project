@@ -114,4 +114,9 @@ public class AStarPathfinding : MonoBehaviour
     {
         return grid.path;
     }
+
+    public bool IsWalkable(Vector3 destination)
+    {
+        return grid.NodeFromWorldPoint(destination).IsWalkable();
+    }
 }

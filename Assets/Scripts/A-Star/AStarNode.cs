@@ -52,4 +52,9 @@ public class AStarNode : IHeapItem<AStarNode>
 
         return compare;
     }
+
+    public bool IsWalkable()
+    {
+        return this.walkable;
+    }
 }

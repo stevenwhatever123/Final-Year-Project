@@ -9,6 +9,8 @@ public class AStarSeek : Action
     // The GameObject that the agent is seeking
     public GameObject target;
 
+    public SharedVector3 targetPosition;
+
     public AStarPathfinding pathfinding;
     
     // Speed for movement
@@ -17,29 +19,31 @@ public class AStarSeek : Action
     public float maxRotationAngle = 90f;
     
     // Path to the target
-    private List<AStarNode> path;
+    protected List<AStarNode> path;
     // Index for the path list
-    private int pathIndex = 0;
+    protected int pathIndex = 0;
     
     // Temp vector3 to store target previous position
-    private Vector3 targetPositionTemp;
+    protected Vector3 targetPositionTemp;
 
     public override void OnStart()
     {
         base.OnStart();
-        path[0] = new AStarNode(true, transform.position, 0, 0);
+        path = new List<AStarNode>();
+        //path[0] = new AStarNode(true, transform.position, 0, 0);
+        path.Add(new AStarNode(true, transform.position, 0, 0));
         targetPositionTemp = Vector3.zero; // Initialise (0,0,0)
     }
 
 
     public override TaskStatus OnUpdate(){
-        if (Vector3.Distance(transform.position, target.transform.position) < 1)
+        if (Vector3.Distance(transform.position, Target()) < 1)
         {
             return TaskStatus.Success;
         }
-        UpdatePath();
+        UpdatePath(targetPosition.Value);
         FollowPath();
-        targetPositionTemp = target.transform.position;
+        //targetPositionTemp = target.transform.position;
         return TaskStatus.Running;
     }
 
@@ -49,22 +53,31 @@ public class AStarSeek : Action
         target = null;
     }
     
-    void UpdatePath()
+    private Vector3 Target()
+    {
+        if (target != null) {
+            return target.transform.position;
+        }
+        return targetPosition.Value;
+    }
+    
+    protected void UpdatePath(Vector3 target)
     {
         // Calculate the path whenever the target moves
-        if (!target.transform.position.Equals(targetPositionTemp))
+        if (!target.Equals(targetPosition))
         {
-            pathfinding.FindPath(transform.position, target.transform.position);
+            pathfinding.FindPath(transform.position, target);
             path = pathfinding.GetPath();
+            pathIndex = 0;
         }
     }
     
     // Method for following the path
-    void FollowPath()
+    protected void FollowPath()
     {
         if (Vector3.Distance(transform.position, path[pathIndex].worldPosition) < 1)
         {
-            if (pathIndex != path.Count - 1)
+            if (pathIndex < path.Count - 2)
             {
                 pathIndex++;
             }
@@ -73,12 +86,13 @@ public class AStarSeek : Action
         //Vector3 direction = (path[0].worldPosition - transform.position).normalized;
         Vector3 direction = (path[pathIndex].worldPosition - transform.position).normalized;
         Quaternion targetRotation = Quaternion.LookRotation(direction);
+        //Vector3 targetDirection = (Target() - transform.position).normalized;
+        //Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
         
         //Debug.Log("Direction: " + direction);
 
         //Vector3 newPosition = transform.position + direction * speed;
         transform.position += direction * speed * Time.deltaTime;
-        //transform.rotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 
             maxRotationAngle * Time.deltaTime);
     }
