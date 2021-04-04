@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
@@ -38,31 +39,45 @@ public class AStarSearchTarget : AStarSeek
     // There is no success or fail state with wander - the agent will just keep wandering
     public override TaskStatus OnUpdate()
     {
-        if (Vector3.Distance(transform.position, path[path.Count-1].worldPosition) < 1) {
-            Debug.Log("GG");
-            // The agent should pause at the destination only if the max pause duration is greater than 0
-            if (maxPauseDuration.Value > 0) {
-                if (destinationReachTime == -1) {
-                    destinationReachTime = Time.time;
-                    pauseTime = Random.Range(minPauseDuration.Value, maxPauseDuration.Value);
+        if (!hasValidDestination)
+        {
+            if (TrySetTarget())
+            {
+                hasValidDestination = true;
+            }
+        }
+        else
+        {
+            if (path.Count > 0)
+            {
+                if (Vector3.Distance(transform.position, path[path.Count - 1].worldPosition) < 2)
+                {
+                    if (maxPauseDuration.Value > 0) {
+                        if (destinationReachTime == -1) {
+                            destinationReachTime = Time.time;
+                            pauseTime = Random.Range(minPauseDuration.Value, maxPauseDuration.Value);
 
-                    counter++;
-                    Debug.Log("Counter: " + counter);
+                            counter++;
+                            Debug.Log("Counter: " + counter);
 
-                    if(counter == numberOfTimes){
-                        counter = 0;
-                        return TaskStatus.Success;
+                            if(counter == numberOfTimes){
+                                counter = 0;
+                                return TaskStatus.Success;
+                            }
+                        }
+                        if (destinationReachTime + pauseTime <= Time.time)
+                        {
+                            hasValidDestination = false;
+                            // Only reset the time if a destination has been set.
+                            destinationReachTime = -1;
+                        }
                     }
                 }
-                if (destinationReachTime + pauseTime <= Time.time) {
-                    // Only reset the time if a destination has been set.
-                    if (TrySetTarget()) {
-                        destinationReachTime = -1;
-                    }
+                else
+                {
+                    FollowPath();
                 }
             }
-            FollowPath();
-            Debug.Log("Moving");
         }
 
         return TaskStatus.Running;
@@ -94,11 +109,7 @@ public class AStarSearchTarget : AStarSeek
             if (validDestination)
             {
                 UpdatePath(destination);
-                //FollowPath();
-                //Debug.Log("Moving to " + destination);
-            } else {
-                Vector3 position = new Vector3(Random.Range(movableMinX, movableMaxX), transform.position.y, 
-                    Random.Range(movableMinZ, movableMaxZ));
+                Debug.Log("Moving to " + destination);
             }
             return validDestination;
         }
@@ -123,40 +134,6 @@ public class AStarSearchTarget : AStarSeek
             } else {
                 return true;
             }
-        }
-
-        private Vector3 Target()
-        {
-            return targetPosition.Value;
-        }
-        
-        void UpdatePath(Vector3 target)
-        {
-            pathfinding.FindPath(transform.position, target);
-            path = pathfinding.GetPath();
-            pathIndex = 0;
-        }
-        
-        protected void FollowPath()
-        {
-            if (Vector3.Distance(transform.position, path[pathIndex].worldPosition) < 1)
-            {
-                if (pathIndex < path.Count - 1)
-                {
-                    pathIndex++;
-                }
-            }
-
-            //Vector3 direction = (path[0].worldPosition - transform.position).normalized;
-            Vector3 direction = (path[pathIndex].worldPosition - transform.position).normalized;
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-
-            //Debug.Log("Direction: " + direction);
-
-            //Vector3 newPosition = transform.position + direction * speed;
-            transform.position += direction * speed * Time.deltaTime;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 
-                maxRotationAngle * Time.deltaTime);
         }
 
         // Reset the public variables

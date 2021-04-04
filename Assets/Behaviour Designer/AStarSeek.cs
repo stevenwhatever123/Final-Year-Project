@@ -37,7 +37,7 @@ public class AStarSeek : Action
 
 
     public override TaskStatus OnUpdate(){
-        if (Vector3.Distance(transform.position, Target()) < 1)
+        if (Vector3.Distance(transform.position, Target()) < 2)
         {
             return TaskStatus.Success;
         }
@@ -53,7 +53,7 @@ public class AStarSeek : Action
         target = null;
     }
     
-    private Vector3 Target()
+    protected Vector3 Target()
     {
         if (target != null) {
             return target.transform.position;
@@ -64,18 +64,19 @@ public class AStarSeek : Action
     protected void UpdatePath(Vector3 target)
     {
         // Calculate the path whenever the target moves
-        if (!target.Equals(targetPosition))
+        if (!target.Equals(targetPositionTemp))
         {
             pathfinding.FindPath(transform.position, target);
             path = pathfinding.GetPath();
             pathIndex = 0;
+            targetPositionTemp = target;
         }
     }
     
     // Method for following the path
     protected void FollowPath()
     {
-        if (Vector3.Distance(transform.position, path[pathIndex].worldPosition) < 1)
+        if (Vector3.Distance(transform.position, path[pathIndex].worldPosition) < 2)
         {
             if (pathIndex < path.Count - 2)
             {
