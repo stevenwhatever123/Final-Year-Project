@@ -126,7 +126,6 @@ public class AStarGrid : MonoBehaviour
 
                 foreach (AStarNode n in grid)
                 {
-                    /*
                     Gizmos.color = (n.walkable) ? Color.white : Color.red;
                     if (seekNode == n)
                     {
@@ -146,33 +145,7 @@ public class AStarGrid : MonoBehaviour
                         }
                     }
                     Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
-                    */
                     
-                    
-                    if (n.walkable)
-                    {
-                        Gizmos.color = Color.white;
-                        if (path != null)
-                        {
-                            if (path.Contains(n))
-                            {
-                                Gizmos.color = Color.black;
-                            }
-                            Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
-                        }
-                    
-                        if (seekNode == n)
-                        {
-                            Gizmos.color = Color.blue;
-                        }
-                        
-                        if (targetNode == n)
-                        {
-                            Gizmos.color = Color.green;
-                        }
-                        
-                        Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
-                    }
                 }
             }
         }

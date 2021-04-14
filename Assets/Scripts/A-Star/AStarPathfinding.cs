@@ -53,7 +53,7 @@ public class AStarPathfinding : MonoBehaviour
                 sw.Stop();
                 print("Path found: " + sw.ElapsedMilliseconds + " ms");
                 RetracePath(startNode, targetNode);
-                    
+
                 seekerTemp = seeker.position;
                 targetTemp = target.position;
                 return;

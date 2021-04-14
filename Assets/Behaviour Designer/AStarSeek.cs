@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
+using Action = BehaviorDesigner.Runtime.Tasks.Action;
 
 public class AStarSeek : Action
 {
@@ -37,13 +39,14 @@ public class AStarSeek : Action
 
 
     public override TaskStatus OnUpdate(){
-        if (Vector3.Distance(transform.position, Target()) < 2)
+        //UpdatePath(targetPosition.Value);
+        UpdatePath(Target());
+        if (path.Count == 0 || Vector3.Distance(transform.position, path[path.Count-1].worldPosition) <= 2)
         {
+            Debug.Log("I get you bitch");
             return TaskStatus.Success;
         }
-        UpdatePath(targetPosition.Value);
         FollowPath();
-        //targetPositionTemp = target.transform.position;
         return TaskStatus.Running;
     }
 
@@ -64,37 +67,43 @@ public class AStarSeek : Action
     protected void UpdatePath(Vector3 target)
     {
         // Calculate the path whenever the target moves
-        if (!target.Equals(targetPositionTemp))
-        {
-            pathfinding.FindPath(transform.position, target);
-            path = pathfinding.GetPath();
-            pathIndex = 0;
-            targetPositionTemp = target;
-        }
+        pathfinding.FindPath(transform.position, target);
+        path = pathfinding.GetPath();
+        pathIndex = 0;
+        targetPositionTemp = target;
     }
     
     // Method for following the path
     protected void FollowPath()
     {
-        if (Vector3.Distance(transform.position, path[pathIndex].worldPosition) < 2)
+        if (Vector3.Distance(transform.position, path[pathIndex].worldPosition) <= 1)
         {
-            if (pathIndex < path.Count - 2)
+            if (pathIndex < path.Count - 1)
             {
                 pathIndex++;
             }
         }
 
-        //Vector3 direction = (path[0].worldPosition - transform.position).normalized;
-        Vector3 direction = (path[pathIndex].worldPosition - transform.position).normalized;
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        //Vector3 targetDirection = (Target() - transform.position).normalized;
-        //Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+        Vector3 nodeToMove = path[pathIndex].worldPosition;
+        nodeToMove.y = transform.position.y;
         
-        //Debug.Log("Direction: " + direction);
+        //Vector3 direction = (path[pathIndex].worldPosition - transform.position).normalized;
+        Vector3 direction = (nodeToMove - transform.position).normalized;
+        
+        Debug.Log("Current Position: " + transform.position);
+        Debug.Log("Next Position: " + nodeToMove);
 
-        //Vector3 newPosition = transform.position + direction * speed;
-        transform.position += direction * speed * Time.deltaTime;
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+        //transform.position += direction * speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position,
+            nodeToMove, speed * Time.deltaTime);
+        
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 
             maxRotationAngle * Time.deltaTime);
+
+
+        Debug.Log("Total Index: " + path.Count);
+        Debug.Log("Current Index: " + pathIndex);
     }
 }

@@ -84,66 +84,66 @@ public class AStarSearchTarget : AStarSeek
     }
     
     private bool TrySetTarget()
-        {
-            //Vector3 currentPosition = transform.position;
-            float currentPositionX = Target().x;
-            float currentPositionZ = Target().z;
-            // Four different points of a square
-            float movableMaxZ = currentPositionZ + distance;
-            float movableMinZ = currentPositionZ - distance;
-            float movableMaxX = currentPositionX + distance;
-            float movableMinX = currentPositionX - distance;
+    {
+        //Vector3 currentPosition = transform.position;
+        float currentPositionX = Target().x;
+        float currentPositionZ = Target().z;
+        // Four different points of a square
+        float movableMaxZ = currentPositionZ + distance;
+        float movableMinZ = currentPositionZ - distance;
+        float movableMaxX = currentPositionX + distance;
+        float movableMinX = currentPositionX - distance;
 
-            var direction = transform.forward;
-            var validDestination = false;
-            var attempts = targetRetries.Value;
-            var destination = transform.position;
-            while (!validDestination && attempts > 0) {
-                direction = direction + Random.insideUnitSphere * wanderRate.Value;
-                destination = transform.position + direction.normalized * Random.Range(minWanderDistance.Value, maxWanderDistance.Value);
-                validDestination = pathfinding.IsWalkable(destination) 
-                                   && CheckWithinACertainArea(destination, movableMaxZ, movableMinZ, 
-                                    movableMaxX, movableMinX);
-                attempts--;
-            }
-            if (validDestination)
-            {
-                UpdatePath(destination);
-                Debug.Log("Moving to " + destination);
-            }
-            return validDestination;
+        var direction = transform.forward;
+        var validDestination = false;
+        var attempts = targetRetries.Value;
+        var destination = transform.position;
+        while (!validDestination && attempts > 0) {
+            direction = direction + Random.insideUnitSphere * wanderRate.Value;
+            destination = transform.position + direction.normalized * Random.Range(minWanderDistance.Value, maxWanderDistance.Value);
+            validDestination = pathfinding.IsWalkable(destination) 
+                               && CheckWithinACertainArea(destination, movableMaxZ, movableMinZ, 
+                                   movableMaxX, movableMinX);
+            attempts--;
         }
+        if (validDestination)
+        {
+            UpdatePath(destination);
+            Debug.Log("Moving to " + destination);
+        }
+        return validDestination;
+    }
 
-        private bool CheckWithinACertainArea(Vector3 destination, float movableMaxZ, float movableMinZ, 
-            float movableMaxX, float movableMinX){
+    private bool CheckWithinACertainArea(Vector3 destination, float movableMaxZ, float movableMinZ, 
+        float movableMaxX, float movableMinX){
 
-            //Vector3 currentPosition = transform.position;
-            float currentPositionX = Target().x;
-            float currentPositionZ = Target().z;
-            // Four different points of a square
-            movableMaxZ = currentPositionZ + distance;
-            movableMinZ = currentPositionZ - distance;
-            movableMaxX = currentPositionX + distance;
-            movableMinX = currentPositionX - distance;
+        //Vector3 currentPosition = transform.position;
+        float currentPositionX = Target().x;
+        float currentPositionZ = Target().z;
+        // Four different points of a square
+        movableMaxZ = currentPositionZ + distance;
+        movableMinZ = currentPositionZ - distance;
+        movableMaxX = currentPositionX + distance;
+        movableMinX = currentPositionX - distance;
 
-            if(destination.x > movableMaxX|| 
-                destination.x < movableMinX|| 
-                destination.z > movableMaxZ|| 
-                destination.z < movableMinZ){
+        if(destination.x > movableMaxX|| 
+           destination.x < movableMinX|| 
+           destination.z > movableMaxZ|| 
+           destination.z < movableMinZ){
                 return false;
-            } else {
-                return true;
-            }
+        } else {
+            return true;
         }
+    }
 
-        // Reset the public variables
-        public override void OnReset()
-        {
-            minWanderDistance = 20;
-            maxWanderDistance = 20;
-            wanderRate = 2;
-            minPauseDuration = 0;
-            maxPauseDuration = 0;
-            targetRetries = 1;
-        }
+    // Reset the public variables
+    public override void OnReset()
+    {
+        minWanderDistance = 20;
+        maxWanderDistance = 20;
+        wanderRate = 2;
+        minPauseDuration = 0;
+        maxPauseDuration = 0;
+        targetRetries = 1;
+    }
 }
