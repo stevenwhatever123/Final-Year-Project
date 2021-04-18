@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class AStarGrid : MonoBehaviour
@@ -137,6 +136,7 @@ public class AStarGrid : MonoBehaviour
                         Gizmos.color = Color.green;
                     }
                     
+                    
                     if (path != null)
                     {
                         if (path.Contains(n))
@@ -144,6 +144,7 @@ public class AStarGrid : MonoBehaviour
                             Gizmos.color = Color.black;
                         }
                     }
+                    
                     Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
                     
                 }

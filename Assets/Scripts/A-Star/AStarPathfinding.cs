@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class AStarPathfinding : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class AStarPathfinding : MonoBehaviour
     private Vector3 seekerTemp, targetTemp;
     
     private AStarGrid grid;
+    
+    private float totalTime = 0;
+    private int numOfRoute = 0;
 
     void Awake()
     {
@@ -51,7 +55,14 @@ public class AStarPathfinding : MonoBehaviour
             if (currentNode == targetNode)
             {
                 sw.Stop();
+                totalTime += sw.ElapsedMilliseconds;
+                numOfRoute++;
                 print("Path found: " + sw.ElapsedMilliseconds + " ms");
+
+                float average = totalTime / numOfRoute;
+                Debug.Log("Average: " + average + " ms");
+                
+                
                 RetracePath(startNode, targetNode);
 
                 seekerTemp = seeker.position;

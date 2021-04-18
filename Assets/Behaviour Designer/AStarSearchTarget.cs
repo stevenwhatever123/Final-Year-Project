@@ -83,7 +83,7 @@ public class AStarSearchTarget : AStarSeek
         return TaskStatus.Running;
     }
     
-    private bool TrySetTarget()
+    protected bool TrySetTarget()
     {
         //Vector3 currentPosition = transform.position;
         float currentPositionX = Target().x;
@@ -114,7 +114,7 @@ public class AStarSearchTarget : AStarSeek
         return validDestination;
     }
 
-    private bool CheckWithinACertainArea(Vector3 destination, float movableMaxZ, float movableMinZ, 
+    protected bool CheckWithinACertainArea(Vector3 destination, float movableMaxZ, float movableMinZ, 
         float movableMaxX, float movableMinX){
 
         //Vector3 currentPosition = transform.position;

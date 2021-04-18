@@ -14,10 +14,12 @@ public class MCTSPathfinding : MonoBehaviour
     private MCTSGrid grid;
 
     private bool pathFind = false;
-
-
+    
     private int gCostSum;
     private int averageGCost;
+
+    private float totalTime = 0;
+    private int numOfRoute = 0;
 
     void Awake()
     {
@@ -28,7 +30,7 @@ public class MCTSPathfinding : MonoBehaviour
     
     void Update()
     {
-        //FindPath(seeker.position, target.position);
+        FindPath(seeker.position, target.position);
     }
     
     public void FindPath(Vector3 startPos, Vector3 targetPos)
@@ -74,7 +76,12 @@ public class MCTSPathfinding : MonoBehaviour
             if (currentNode == targetNode)
             {
                 sw.Stop();
+                totalTime += sw.ElapsedMilliseconds;
+                numOfRoute++;
                 print("Path found: " + sw.ElapsedMilliseconds + " ms");
+
+                float average = totalTime / numOfRoute;
+                Debug.Log("Average: " + average + " ms");
                 RetracePath(startNode, targetNode);
 
                 seekerTemp = seeker.position;
