@@ -82,6 +82,7 @@ public class MCTSPathfinding : MonoBehaviour
 
                 float average = totalTime / numOfRoute;
                 Debug.Log("Average: " + average + " ms");
+                Debug.Log("Count: " + numOfRoute);
                 RetracePath(startNode, targetNode);
 
                 seekerTemp = seeker.position;
