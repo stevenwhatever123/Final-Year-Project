@@ -76,6 +76,7 @@ public class AStarSeek : Action
     // Method for following the path
     protected void FollowPath()
     {
+        /*
         if (Vector3.Distance(transform.position, path[pathIndex].worldPosition) <= 1)
         {
             if (pathIndex < path.Count - 1)
@@ -83,6 +84,7 @@ public class AStarSeek : Action
                 pathIndex++;
             }
         }
+        */
 
         Vector3 nodeToMove = path[pathIndex].worldPosition;
         nodeToMove.y = transform.position.y;
@@ -101,6 +103,14 @@ public class AStarSeek : Action
         
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 
             maxRotationAngle * Time.deltaTime);
+        
+        if (Vector3.Distance(transform.position, path[pathIndex].worldPosition) <= 1)
+        {
+            if (pathIndex < path.Count - 1)
+            {
+                pathIndex++;
+            }
+        }
 
 
         Debug.Log("Total Index: " + path.Count);
