@@ -6,6 +6,12 @@ using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 using Action = BehaviorDesigner.Runtime.Tasks.Action;
 
+/*
+ * This class is responsible movement of the AI using MCTS
+ * Author: Steven Ho
+ * Date: 14-4-2021
+ * Code version: 1.0
+ */
 public class MCTSSeek : Action
 {
     // The GameObject that the agent is seeking

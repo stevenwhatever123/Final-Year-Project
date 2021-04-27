@@ -4,6 +4,12 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
+/*
+ * This class is responsible for wander around the area using MCTS pathfinding
+ * Author: Steven Ho
+ * Date: 14-4-2021
+ * Code version: 1.0
+ */
 public class MCTSWanderWithinArea : MCTSSeek
 {
     [UnityEngine.Tooltip("Minimum distance ahead of the current position to look ahead for a destination")]

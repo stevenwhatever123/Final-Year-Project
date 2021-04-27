@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
+/*
+ * This class is responsible heap index for A Star Node
+ * Author: Sebastian Lague
+ * Date: 1-3-2021
+ * Code version: 1.0
+ * Available at: https://github.com/SebLague/Pathfinding
+ */
 public class AStarHeap<T> where T: IHeapItem<T>
 {
     private T[] items;

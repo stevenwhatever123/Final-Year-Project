@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using BehaviorDesigner.Runtime;
 using UnityEngine;
 
+/*
+ * This class is responsible sound detection of the AI
+ * Author: Steven Ho
+ * Date: 24-2-2021
+ * Code version: 1.0
+ */
 public class SoundDetection : MonoBehaviour
 {
     public Collider[] colliders;

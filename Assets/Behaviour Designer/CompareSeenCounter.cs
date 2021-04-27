@@ -1,4 +1,10 @@
-﻿namespace BehaviorDesigner.Runtime.Tasks.Unity.SharedVariables
+﻿/*
+ * This class is responsible comparing the counter is smaller than the assigned value 
+ * Author: Steven Ho
+ * Date: 2-2-2021
+ * Code version: 1.0
+ */
+namespace BehaviorDesigner.Runtime.Tasks.Unity.SharedVariables
 {
     [TaskCategory("Unity/SharedVariable")]
     [TaskDescription("Returns success if the variable value is equal to the compareTo value.")]

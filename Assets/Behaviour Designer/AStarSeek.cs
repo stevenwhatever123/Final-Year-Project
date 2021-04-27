@@ -6,6 +6,12 @@ using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 using Action = BehaviorDesigner.Runtime.Tasks.Action;
 
+/*
+ * This class is responsible seeking the target
+ * Author: Steven Ho
+ * Date: 7-3-2021
+ * Code version: 1.4
+ */
 public class AStarSeek : Action
 {
     // The GameObject that the agent is seeking

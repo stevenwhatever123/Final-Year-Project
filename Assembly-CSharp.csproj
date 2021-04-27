@@ -724,6 +724,7 @@
      <Compile Include="Assets\Scripts\A-Star\AStarNode.cs" />
      <Compile Include="Assets\Scripts\A-Star\AStarPathfinding.cs" />
      <Compile Include="Assets\Scripts\BackToMenuScript.cs" />
+     <Compile Include="Assets\Scripts\BroadView.cs" />
      <Compile Include="Assets\Scripts\BroadViewDetection.cs" />
      <Compile Include="Assets\Scripts\MCTS\MCTSAgent.cs" />
      <Compile Include="Assets\Scripts\MCTS\MCTSGrid.cs" />

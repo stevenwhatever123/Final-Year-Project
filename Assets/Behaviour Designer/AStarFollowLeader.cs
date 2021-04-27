@@ -6,6 +6,12 @@ using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 using Action = BehaviorDesigner.Runtime.Tasks.Action;
 
+/*
+ * This class is responsible for the movement of the AI
+ * Author: Steven Ho
+ * Date: 23-2-2021
+ * Code version: 1.0
+ */
 public class AStarFollowLeader : Action
 {
     // The GameObject that the agent is seeking

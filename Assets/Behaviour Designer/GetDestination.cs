@@ -4,6 +4,12 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
+/*
+ * This class is responsible calculating a random destination
+ * Author: Steven Ho
+ * Date: 18-4-2021
+ * Code version: 1.0
+ */
 public class GetDestination : Action
 {
     private Vector3 destination = Vector3.zero;

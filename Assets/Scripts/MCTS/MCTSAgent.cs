@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * This class is responsible for the movement of the agent
+ * Author: Steven Ho
+ * Date: 14-4-2021
+ * Code version: 1.0
+ */
 public class MCTSAgent : MonoBehaviour
 {
     public Transform target;

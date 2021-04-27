@@ -4,6 +4,12 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
+/*
+ * This class is responsible for playing the animation when the target is lost
+ * Author: Steven Ho
+ * Date: 27-1-2021
+ * Code version: 1.0
+ */
 public class TargetLost : Action
 {
 

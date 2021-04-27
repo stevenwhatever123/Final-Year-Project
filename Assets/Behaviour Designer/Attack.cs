@@ -4,6 +4,12 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
+/*
+ * This class is responsible for triggering the attack animation and attack the target
+ * Author: Steven Ho
+ * Date: 27-1-2021
+ * Code version: 1.0
+ */
 public class Attack : Action
 {
     const string k_AnimAttackParameter = "Attack";

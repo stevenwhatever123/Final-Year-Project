@@ -4,6 +4,13 @@ using System.Diagnostics;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
+/*
+ * This class is responsible the calculation of pathfinding
+ * Author: Sebastian Lague
+ * Date: 26-2-2021
+ * Code version: 1.6
+ * Available at: https://github.com/SebLague/Pathfinding
+ */
 public class AStarPathfinding : MonoBehaviour
 {
     public Transform seeker, target;
@@ -127,7 +134,11 @@ public class AStarPathfinding : MonoBehaviour
     {
         return grid.path;
     }
-
+    
+    /*
+    * This method returns a boolean if the destination is walkable
+    * Author: Steven Ho
+    */
     public bool IsWalkable(Vector3 destination)
     {
         return grid.NodeFromWorldPoint(destination).IsWalkable();

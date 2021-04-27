@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * This class is responsible for the movement of the agent
+ * Author: Steven Ho
+ * Date: 7-3-2021
+ * Code version: 1.1
+ */
+
 public class AStarAgent : MonoBehaviour
 {
     public Transform target;
@@ -41,13 +48,8 @@ public class AStarAgent : MonoBehaviour
         {
             pathIndex++;
         }
-
-        //Vector3 direction = (path[0].worldPosition - transform.position).normalized;
-        Vector3 direction = (path[pathIndex].worldPosition - transform.position).normalized;
         
-        //Debug.Log("Direction: " + direction);
-
-        //Vector3 newPosition = transform.position + direction * speed;
+        Vector3 direction = (path[pathIndex].worldPosition - transform.position).normalized;
         transform.position += direction * speed * Time.deltaTime;
         transform.rotation = Quaternion.LookRotation(direction);
     }

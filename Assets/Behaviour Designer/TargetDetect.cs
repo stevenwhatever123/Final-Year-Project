@@ -4,6 +4,12 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
+/*
+ * This class is responsible for playing animation when the target is detected
+ * Author: Steven Ho
+ * Date: 27-1-2021
+ * Code version: 1.0
+ */
 public class TargetDetect : Action
 {
     const string k_AnimAlertedParameter = "Alerted";

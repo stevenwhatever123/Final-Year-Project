@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * This class is responsible for storing information of a node
+ * Author: Sebastian Lague
+ * Date: 26-2-2021
+ * Code version: 1.4
+ * Available at: https://github.com/SebLague/Pathfinding
+ */
 public class AStarNode : IHeapItem<AStarNode>
 {
     public bool walkable;
@@ -52,6 +59,11 @@ public class AStarNode : IHeapItem<AStarNode>
         return compare;
     }
 
+    /*
+    * This method returns is the node is walkable
+    * Author: Steven Ho
+    * Date: 26-2-2021
+    */
     public bool IsWalkable()
     {
         return this.walkable;

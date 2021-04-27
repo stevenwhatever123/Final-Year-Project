@@ -1,5 +1,11 @@
 ﻿using UnityEngine;
 
+/*
+ * This class is responsible for searching the target using Unity's NavMesh
+ * Author: Steven Ho
+ * Date: 27-1-2021
+ * Code version: 1.1
+ */
 namespace BehaviorDesigner.Runtime.Tasks.Movement
 {   
     [TaskDescription("Search for target in last seen area")]

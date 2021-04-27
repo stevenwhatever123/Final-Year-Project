@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
+/*
+ * This class is responsible stay idle in a assigned position
+ * Author: Steven Ho
+ * Date: 18-4-2021
+ * Code version: 1.0
+ */
 public class BackToStandBy : AStarSeek
 {
 

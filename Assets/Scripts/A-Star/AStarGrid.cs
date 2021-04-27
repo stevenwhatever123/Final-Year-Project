@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * This class is responsible create grid in worldspace
+ * Author: Sebastian Lague
+ * Date: 26-2-2021
+ * Code version: 1.0
+ * Available at: https://github.com/SebLague/Pathfinding
+ */
 public class AStarGrid : MonoBehaviour
 {
     public bool onlyDisplayPathGizmos;
@@ -45,8 +52,9 @@ public class AStarGrid : MonoBehaviour
         {
             for (int y = 0; y < gridSizeY; y++)
             {
-                Vector3 worldPoint = worldBottonLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward
-                    * (y * nodeDiameter + nodeRadius);
+                Vector3 worldPoint = worldBottonLeft + Vector3.right 
+                     * (x * nodeDiameter + nodeRadius) 
+                     + Vector3.forward * (y * nodeDiameter + nodeRadius);
                 bool walkable = (!Physics.CheckSphere(worldPoint, nodeRadius, unwalkableMask)
                                  && Physics.CheckSphere(worldPoint, nodeRadius, walkableMask));
                 grid[x, y] = new AStarNode(walkable, worldPoint, x, y);
@@ -74,10 +82,8 @@ public class AStarGrid : MonoBehaviour
                 {
                     neighbours.Add(grid[checkX, checkY]);
                 }
-
             }
         }
-
         return neighbours;
     }
 
@@ -97,6 +103,12 @@ public class AStarGrid : MonoBehaviour
 
     public List<AStarNode> path;
 
+    /*
+    * This methods draw the grid on the editor
+    * Author: Steven Ho
+    * Date: 1-3-2021
+    * Code version: 1.2
+    */
     private void OnDrawGizmos()
     {
         //Matrix4x4 rotationMatrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);

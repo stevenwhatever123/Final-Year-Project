@@ -5,6 +5,12 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
+/*
+ * This class is responsible for searching the target in a nearby area
+ * Author: Steven Ho
+ * Date: 8-3-2021
+ * Code version: 1.4
+ */
 public class AStarSearchTarget : AStarSeek
 {
     //Search for target in last seen area

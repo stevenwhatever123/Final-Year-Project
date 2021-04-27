@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * This class is responsible storing information of a MCTS node
+ * Author: Sebastian Lague
+ * Date: 26-2-2021
+ * Code version: 1.0
+ * Available at: https://github.com/SebLague/Pathfinding
+ */
 public class MCTSNode: IHeapItem<MCTSNode>
 {
     public bool walkable;
@@ -32,17 +39,28 @@ public class MCTSNode: IHeapItem<MCTSNode>
         return gCost + hCost;
     }
 
-
+    /*
+     * This method returns the boolean if the node is walkable
+     * Author: Steven Ho
+     */
     public bool IsWalkable()
     {
         return this.walkable;
     }
-
+    
+    /*
+     * This methods adds the parent node
+     * Author: Steven Ho
+     */
     public void AddParent(MCTSNode parent)
     {
         this.parent = parent;
     }
 
+    /*
+     * This methods adds the child node to the list
+     * Author: Steven Ho
+     */
     public void AddChild(MCTSNode child)
     {
         childs.Add(child);

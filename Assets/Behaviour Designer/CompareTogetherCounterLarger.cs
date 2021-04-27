@@ -1,4 +1,11 @@
-﻿namespace BehaviorDesigner.Runtime.Tasks.Unity.SharedVariables
+﻿/*
+ * This class is responsible for comparing if together counter is larger
+ * Author: Steven Ho
+ * Date: 18-4-2021
+ * Code version: 1.0
+ */
+
+namespace BehaviorDesigner.Runtime.Tasks.Unity.SharedVariables
 {
     [TaskCategory("Unity/SharedVariable")]
     [TaskDescription("Returns success if the variable value is equal to the compareTo value.")]

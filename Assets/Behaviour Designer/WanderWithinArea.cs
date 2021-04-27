@@ -1,5 +1,11 @@
 ﻿using UnityEngine;
 
+/*
+ * This class is responsible for wandering in a certain area using Unity's NavMesh
+ * Author: Steven Ho
+ * Date: 27-1-2021
+ * Code version: 1.1
+ */
 namespace BehaviorDesigner.Runtime.Tasks.Movement
 {
     [TaskDescription("Wander using the Unity NavMesh.")]

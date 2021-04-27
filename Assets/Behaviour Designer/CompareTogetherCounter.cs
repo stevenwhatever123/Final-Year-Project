@@ -1,4 +1,11 @@
-﻿namespace BehaviorDesigner.Runtime.Tasks.Unity.SharedVariables
+﻿/*
+ * This class is responsible to check if the variable is smaller than the latter
+ * Author: Steven Ho
+ * Date: 18-4-2021
+ * Code version: 1.0
+ */
+
+namespace BehaviorDesigner.Runtime.Tasks.Unity.SharedVariables
 {
     [TaskCategory("Unity/SharedVariable")]
     [TaskDescription("Returns success if the variable value is equal to the compareTo value.")]

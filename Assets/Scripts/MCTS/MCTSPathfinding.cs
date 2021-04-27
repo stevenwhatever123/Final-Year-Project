@@ -5,6 +5,13 @@ using System.Linq;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
+/*
+ * This class is responsible for the pathfinding calculation
+ * Author: Sebastian Lague
+ * Date: 14-4-2021
+ * Code version: 1.3
+ * Available at: https://github.com/SebLague/Pathfinding
+ */
 public class MCTSPathfinding : MonoBehaviour
 {
     public Transform seeker, target;
@@ -47,6 +54,10 @@ public class MCTSPathfinding : MonoBehaviour
             
         while (openSet.Count > 0 && targetNode.walkable && startNode.walkable)
         {
+            /*
+             * This is the random selection of node
+             * Author: Steven Ho
+             */
             MCTSNode currentNode = openSet[0];
             gCostSum = 0;
             
@@ -149,6 +160,9 @@ public class MCTSPathfinding : MonoBehaviour
         return grid.path;
     }
 
+    /*
+     * This method returns a boolean if the destination is walkable
+     */
     public bool IsWalkable(Vector3 destination)
     {
         return grid.NodeFromWorldPoint(destination).IsWalkable();

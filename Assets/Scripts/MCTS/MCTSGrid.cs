@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * This class is responsible create grid in worldspace
+ * Author: Sebastian Lague
+ * Date: 14-4-2021
+ * Code version: 1.1
+ * Available at: https://github.com/SebLague/Pathfinding
+ */
 public class MCTSGrid : MonoBehaviour
 {
     public bool onlyDisplayPathGizmos;
@@ -89,6 +96,10 @@ public class MCTSGrid : MonoBehaviour
     
     public List<MCTSNode> path;
     
+    /*
+     * This method draws the grid on the editor
+     * Author: Steven Ho
+     */
     private void OnDrawGizmos()
     {
         //Matrix4x4 rotationMatrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);
